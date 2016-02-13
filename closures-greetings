@@ -1,0 +1,23 @@
+// A Closure Example
+function greet(visitor, greeter) {
+  var text = "Greetings " + visitor + "! I am " + greeter + ". ";
+  
+  var say = function() {
+    alert(text); //the function has access to text
+  }
+  
+  // Adding onto text after say is initialized is fine, kept by reference
+  text += "\nI hope everything is going well...";
+  return say;
+}
+
+// Intialize greetings
+var boGreeting = greet("Bo", "Dave Thompkins");
+var heroGreeting = greet("Hero", "the innkeeper");
+var anakinGreeting = greet("Anakin", "Qui-Gon Jinn");
+
+// Call our greetings
+boGreeting();
+heroGreeting();
+anakinGreeting();
+greet("Luke", "Your Father")(); // Calls the function reference

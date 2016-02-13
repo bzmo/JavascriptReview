@@ -1,0 +1,44 @@
+// Person object
+var Person = function(name, age) {
+  this.name = name;
+  this.age = age;
+  this.count = 0;
+}
+
+// A method to retrieve a Person's name and age.
+Person.prototype.getBasicInfo = function() {
+
+  // throw an 'upset' error if getName is called 3+ times.
+  if (this.count >= 2) {
+    throw new Error("Remember my name already! It's " + this.name + " !");
+  }
+
+  this.count++;
+  return "My name is " + this.name + ". I am " + this.age + " years old.";
+};
+
+// A Student Object to inherit from Person.
+var Student = function(name, age, school) {
+  this.name = name;
+  this.age = age;
+  this.school = school;
+};
+
+// Inherit the methods and fields of Person, and add a method unique to Student
+Student.prototype = new Person();
+Student.prototype.getStudentInfo = function() {
+  return this.getBasicInfo() + " I attend " + this.school + ".";
+};
+
+// Initializations
+var bo = new Student("Bo", 19, "UW");
+
+
+// Run our methods.
+try {
+  alert(bo.getStudentInfo());
+  alert(bo.getStudentInfo());
+  alert(bo.getStudentInfo());
+} catch (err) {
+  alert(err.message);
+}

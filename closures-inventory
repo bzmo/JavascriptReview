@@ -1,0 +1,33 @@
+// Uninitialized global variables
+var alertStock;
+var sellApple;
+
+// A Closure Example
+function restockInventory() {
+  var numApples = 3; //intially 3 apples in stock
+
+  // Alerts with numApples value
+  alertStock = function() {
+    alert(numApples);
+  }
+
+  // Subtracts 1 from numApples, if possible, or alerts with "Out of Stock".
+  sellApple = function() {
+    if (numApples <= 0) {
+      alert("Out of stock!");
+    } else {
+      numApples--;
+    }
+  }
+
+  alert("Restocked!");
+}
+
+// Call global variables
+restockInventory(); // Restocked!
+alertStock();       // 3
+sellApple();
+alertStock();       // 2
+sellApple();
+sellApple();
+sellApple();        // Out of stock! Please restock!
